@@ -3,6 +3,22 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  constructor(){
+    super();
+    this.state={
+      todos: [{
+        id: 1, name: 'Play basketball'
+      },{
+        id: 2, name: 'Buy some clothes'
+      },{
+        id: 3, name: 'Write some code'
+      },{
+        id:4, name: 'Wach movies'
+      }]
+    }
+  }
+
   render() {
     return (
       <div className="App">
