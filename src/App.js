@@ -20,6 +20,23 @@ class App extends Component {
             Learn React
           </a>
         </header>
+
+        <div className="container">
+          <ul className="list-group">
+            <li className="list-group-item">
+              Some list item!
+            </li>
+            <li className="list-group-item">
+              TODO: something
+            </li>
+            <li className="list-group-item">
+              FIX: all !
+            </li>
+            
+          </ul>
+        </div>
+
+
       </div>
     );
   }
