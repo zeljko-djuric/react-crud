@@ -38,7 +38,7 @@ class App extends Component {
         </header>
 
         <div className="container">
-          <h2 className="text-center p4"> Todos Appp</h2>
+          <h2 className="text-center p4"> Todos App</h2>
           <ul className="list-group">
            {this.state.todos.map((item) => {
              return <li className="list-group-item">{item.name}</li>
