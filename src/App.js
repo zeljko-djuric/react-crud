@@ -22,6 +22,7 @@ class App extends Component {
         </header>
 
         <div className="container">
+          <h2 className="text-center p4"> Todos Appp</h2>
           <ul className="list-group">
             <li className="list-group-item">
               Some list item!
