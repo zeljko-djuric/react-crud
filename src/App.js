@@ -40,15 +40,9 @@ class App extends Component {
         <div className="container">
           <h2 className="text-center p4"> Todos Appp</h2>
           <ul className="list-group">
-            <li className="list-group-item">
-              Some list item!
-            </li>
-            <li className="list-group-item">
-              TODO: something
-            </li>
-            <li className="list-group-item">
-              FIX: all !
-            </li>
+           {this.state.todos.map((item) => {
+             return <li className="list-group-item">{item.name}</li>
+           })}
             
           </ul>
         </div>
