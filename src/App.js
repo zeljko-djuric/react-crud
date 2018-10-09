@@ -19,6 +19,10 @@ class App extends Component {
     }
   }
 
+  handleChange(event){
+    console.log(event.target.name, event.target.value);
+  }
+
   render() {
     return (
       <div className="App">
@@ -38,7 +42,7 @@ class App extends Component {
         </header>
 
         <div className="container">
-          <h2 className="text-center p4"> Todos App</h2>
+          <input type="text" name="todo" className="my-4 form-control" placeholder="Add a new todo" onChange={this.handleChange} />
           <ul className="list-group">
            {this.state.todos.map((item) => {
              return <li key={item.id} className="list-group-item">{item.name}</li>
