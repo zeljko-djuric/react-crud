@@ -29,7 +29,18 @@ class App extends Component {
   }
 
   addTodo(){
+    const newTodo={
+      name: this.state.newTodo,
+      id: this.state.todos[this.state.todos.length -1].id + 1
+    }
+    
+    const todos = this.state.todos;
+    todos.push(newTodo);
 
+    this.setState({
+      todos: todos,
+      newTodo: ''
+    })
   }
 
   render() {
