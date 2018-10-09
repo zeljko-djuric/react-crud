@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -18,12 +17,18 @@ class App extends Component {
         id:4, name: 'Wach movies'
       }]
     }
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
   }
 
-  handleChange(event){
+  // handleChange(event){
+  //   this.setState({
+  //     newTodo: event.target.value
+  //   })
+  // }
+
+  handleChange = (event) =>{
     this.setState({
       newTodo: event.target.value
     })
@@ -64,8 +69,7 @@ class App extends Component {
              return <li key={item.id} className="list-group-item">{item.name}
               <button className="btn-sm ml-4 btn btn-danger" onClick={() => {this.deleteTodo(index)}}>X</button>
              </li>
-           })}
-            
+           })}  
           </ul>
         </div>
 
