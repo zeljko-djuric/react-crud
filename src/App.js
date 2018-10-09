@@ -20,6 +20,7 @@ class App extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.addTodo = this.addTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }
 
   handleChange(event){
@@ -41,6 +42,12 @@ class App extends Component {
       todos: todos,
       newTodo: ''
     })
+  }
+
+  deleteTodo(index){
+    const todos = this.state.todos;
+    delete todos[index];
+    this.setState({todos: todos})
   }
 
   render() {
@@ -68,9 +75,9 @@ class App extends Component {
             Add ToDo
           </button>
           <ul className="list-group">
-           {this.state.todos.map((item) => {
+           {this.state.todos.map((item, index) => {
              return <li key={item.id} className="list-group-item">{item.name}
-              <button className="btn-sm ml-4 btn btn-danger" onClick={this.deleteTodo}>X</button>
+              <button className="btn-sm ml-4 btn btn-danger" onClick={() => {this.deleteTodo(index)}}>X</button>
              </li>
            })}
             
