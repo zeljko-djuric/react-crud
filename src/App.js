@@ -7,6 +7,7 @@ class App extends Component {
   constructor(){
     super();
     this.state={
+      newTodo: '',
       todos: [{
         id: 1, name: 'Play basketball'
       },{
@@ -17,13 +18,22 @@ class App extends Component {
         id:4, name: 'Wach movies'
       }]
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.addTodo = this.addTodo.bind(this);
   }
 
   handleChange(event){
-    console.log(event.target.name, event.target.value);
+    this.setState({
+      newTodo: event.target.value
+    })
+  }
+
+  addTodo(){
+
   }
 
   render() {
+    console.log(this.state.newTodo);
     return (
       <div className="App">
         <header className="App-header">
@@ -42,7 +52,10 @@ class App extends Component {
         </header>
 
         <div className="container">
-          <input type="text" name="todo" className="my-4 form-control" placeholder="Add a new todo" onChange={this.handleChange} />
+          <input type="text" name="todo" className="my-4 form-control" placeholder="Add a new todo" onChange={this.handleChange} value={this.state.newTodo} />
+          <button onClick={this.addTodo} className="btn-info mb-3 form control">
+            Add ToDo
+          </button>
           <ul className="list-group">
            {this.state.todos.map((item) => {
              return <li key={item.id} className="list-group-item">{item.name}</li>
