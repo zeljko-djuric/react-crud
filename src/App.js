@@ -8,6 +8,7 @@ class App extends Component {
     this.state={
       newTodo: '',
       editing: false,
+      editingIndex: null,
       todos: [{
         id: 1, name: 'Play basketball'
       },{
@@ -21,7 +22,7 @@ class App extends Component {
     // this.handleChange = this.handleChange.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
-    this.updateTodo = this.updateTodo.bind(this);
+    this.editTodo = this.editTodo.bind(this);
   }
 
   // handleChange(event){
@@ -57,12 +58,23 @@ class App extends Component {
     this.setState({todos: todos})
   }
 
-  updateTodo(index){
+  editTodo(index){
     const todo = this.state.todos[index];
     this.setState({
       editing: true,
-      newTodo: todo.name
+      newTodo: todo.name,
+      editingIndex: index
     })
+  }
+
+  updateTodo(){
+    const todo = this.state.todos[this.state.editingIndex];
+    todo.name = this.state.newTodo;
+
+    const todos = this.state.todos;
+    todos[this.state.editingIndex] = todo;
+    this.setState({todos, editing: false, editingIndex: null, newTodo: ''});
+
   }
 
   render() {
@@ -71,7 +83,7 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <input type="text" name="todo" className="my-4 form-control" placeholder="Add a new todo" onChange={this.handleChange} value={this.state.newTodo} />
-          <button onClick={this.addTodo} className="btn-info mb-3 form control">
+          <button onClick={this.state.editing ? this.updateTodo : this.addTodo} className="btn-info mb-3 form control">
             {this.state.editing ? 'Update todo' : 'Add todo'}
           </button>
           {
@@ -79,7 +91,7 @@ class App extends Component {
           <ul className="list-group">
           {this.state.todos.map((item, index) => {
             return <li key={item.id} className="list-group-item">
-             <button className="btn-sm mr-4 btn btn-info" onClick={() => {this.updateTodo(index)}}>U</button>
+             <button className="btn-sm mr-4 btn btn-info" onClick={() => {this.editTodo(index)}}>U</button>
              {item.name}
              <button className="btn-sm ml-4 btn btn-danger" onClick={() => {this.deleteTodo(index)}}>X</button>
              </li>
