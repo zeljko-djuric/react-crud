@@ -58,8 +58,10 @@ class App extends Component {
   }
 
   updateTodo(index){
+    const todo = this.state.todos[index];
     this.setState({
-      editing: true
+      editing: true,
+      newTodo: todo.name
     })
   }
 
