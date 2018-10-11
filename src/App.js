@@ -74,15 +74,18 @@ class App extends Component {
           <button onClick={this.addTodo} className="btn-info mb-3 form control">
             {this.state.editing ? 'Update todo' : 'Add todo'}
           </button>
+          {
+          !this.state.editing && 
           <ul className="list-group">
-           {this.state.todos.map((item, index) => {
-             return <li key={item.id} className="list-group-item">
-              <button className="btn-sm mr-4 btn btn-info" onClick={() => {this.updateTodo(index)}}>U</button>
-              {item.name}
-              <button className="btn-sm ml-4 btn btn-danger" onClick={() => {this.deleteTodo(index)}}>X</button>
-              </li>
-             })}  
-          </ul>
+          {this.state.todos.map((item, index) => {
+            return <li key={item.id} className="list-group-item">
+             <button className="btn-sm mr-4 btn btn-info" onClick={() => {this.updateTodo(index)}}>U</button>
+             {item.name}
+             <button className="btn-sm ml-4 btn btn-danger" onClick={() => {this.deleteTodo(index)}}>X</button>
+             </li>
+            })}  
+         </ul>
+          }
         </div>
 
 
