@@ -66,10 +66,12 @@ class App extends Component {
           </button>
           <ul className="list-group">
            {this.state.todos.map((item, index) => {
-             return <li key={item.id} className="list-group-item">{item.name}
+             return <li key={item.id} className="list-group-item">
+              <button className="btn-sm mr-4 btn btn-info" onClick={() => {this.deleteTodo(index)}}>U</button>
+              {item.name}
               <button className="btn-sm ml-4 btn btn-danger" onClick={() => {this.deleteTodo(index)}}>X</button>
-             </li>
-           })}  
+              </li>
+             })}  
           </ul>
         </div>
 
