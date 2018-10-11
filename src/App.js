@@ -23,6 +23,7 @@ class App extends Component {
     this.addTodo = this.addTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
     this.editTodo = this.editTodo.bind(this);
+    this.updateTodo = this.updateTodo.bind(this);
   }
 
   // handleChange(event){
@@ -40,7 +41,7 @@ class App extends Component {
   addTodo(){
     const newTodo={
       name: this.state.newTodo,
-      id: this.state.todos[this.state.todos.length -1].id + 1
+      id: this.generateTodoId()
     }
     
     const todos = this.state.todos;
@@ -50,6 +51,15 @@ class App extends Component {
       todos: todos,
       newTodo: ''
     })
+  }
+
+  generateTodoId(){
+    const lastTodo = this.state.todos[this.state.todos.length - 1];
+    if(lastTodo){
+      return lastTodo.id +1;
+    }
+
+    return 1;
   }
 
   deleteTodo(index){
@@ -68,12 +78,13 @@ class App extends Component {
   }
 
   updateTodo(){
-    const todo = this.state.todos[this.state.editingIndex];
-    todo.name = this.state.newTodo;
+   const todo = this.state.todos[this.state.editingIndex];
 
-    const todos = this.state.todos;
-    todos[this.state.editingIndex] = todo;
-    this.setState({todos, editing: false, editingIndex: null, newTodo: ''});
+   todo.name = this.state.newTodo;
+
+   const todos = this.state.todos;
+   todos[this.state.editingIndex] = todo;
+   this.setState({todos, editing: false, editingIndex: null});
 
   }
 
