@@ -10,15 +10,7 @@ class App extends Component {
       editing: false,
       editingIndex: null,
       notification: null,
-      todos: [{
-        id: 1, name: 'Play basketball'
-      },{
-        id: 2, name: 'Buy some clothes'
-      },{
-        id: 3, name: 'Write some code'
-      },{
-        id:4, name: 'Wach movies'
-      }]
+      todos: []
     }
     // this.handleChange = this.handleChange.bind(this);
     this.addTodo = this.addTodo.bind(this);
