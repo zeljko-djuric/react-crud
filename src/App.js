@@ -12,7 +12,8 @@ class App extends Component {
       editing: false,
       editingIndex: null,
       notification: null,
-      todos: []
+      todos: [],
+      loading: false
     }
 
     this.apiUrl = 'https://5bc0b60684e95e001342c259.mockapi.io';
