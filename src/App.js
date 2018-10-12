@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import ListItem from './ListItem';
+import axios from 'axios';
+
 class App extends Component {
 
   constructor(){
@@ -12,6 +14,9 @@ class App extends Component {
       notification: null,
       todos: []
     }
+
+    this.apiUrl = 'https://5bc0b60684e95e001342c259.mockapi.io';
+
     // this.handleChange = this.handleChange.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
@@ -19,6 +24,15 @@ class App extends Component {
     this.updateTodo = this.updateTodo.bind(this);
     this.alert = this.alert.bind(this);
   }
+
+  async componentDidMount(){
+    const response = await axios.get(`${this.apiUrl}/todos`);
+    console.log(response);
+    this.setState({
+      todos: response.data
+    })
+  }
+
 
   // handleChange(event){
   //   this.setState({
