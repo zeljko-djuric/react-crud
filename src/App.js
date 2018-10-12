@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ListItem from './ListItem';
 import axios from 'axios';
+import { __await } from 'tslib';
 
 class App extends Component {
 
@@ -84,8 +85,11 @@ class App extends Component {
     return 1;
   }
 
-  deleteTodo(index){
+ async deleteTodo(index){
     const todos = this.state.todos;
+    const todos = todos[index];
+    await axios.delete(`${this.apiUrl}/todos/${todo.id}`);
+
     delete todos[index];
     this.setState({todos: todos});
     this.alert('Todo deleted successfully.');
