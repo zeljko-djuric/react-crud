@@ -58,14 +58,14 @@ class App extends Component {
     })
   }
 
-  addTodo(){
-    const newTodo={
-      name: this.state.newTodo,
-      id: this.generateTodoId()
-    }
+ async addTodo(){
+  const response = await  axios.post(`${this.apiUrl}/todos`,{
+    name: this.state.newTodo
+  });
+  console.log(response);
     
     const todos = this.state.todos;
-    todos.push(newTodo);
+    todos.push(response.data);
 
     this.setState({
       todos: todos,
