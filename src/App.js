@@ -9,6 +9,7 @@ class App extends Component {
       newTodo: '',
       editing: false,
       editingIndex: null,
+      notification: null,
       todos: [{
         id: 1, name: 'Play basketball'
       },{
@@ -24,6 +25,7 @@ class App extends Component {
     this.deleteTodo = this.deleteTodo.bind(this);
     this.editTodo = this.editTodo.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
+    this.alert = this.alert.bind(this);
   }
 
   // handleChange(event){
@@ -31,6 +33,18 @@ class App extends Component {
   //     newTodo: event.target.value
   //   })
   // }
+
+  alert(notification){
+    this.setState({
+      notification
+    })
+
+    setTimeout(() => {
+      this.setState({
+        notification: null
+      });
+    }, 1000);
+  }
 
   handleChange = (event) =>{
     this.setState({
@@ -51,6 +65,8 @@ class App extends Component {
       todos: todos,
       newTodo: ''
     })
+
+    this.alert('Todo added successfully.');
   }
 
   generateTodoId(){
@@ -65,7 +81,9 @@ class App extends Component {
   deleteTodo(index){
     const todos = this.state.todos;
     delete todos[index];
-    this.setState({todos: todos})
+    this.setState({todos: todos});
+    this.alert('Todo deleted successfully.');
+
   }
 
   editTodo(index){
@@ -86,6 +104,8 @@ class App extends Component {
    todos[this.state.editingIndex] = todo;
    this.setState({todos, editing: false, editingIndex: null});
 
+   this.alert('Todo updated successfully.');
+
   }
 
   render() {
@@ -93,6 +113,13 @@ class App extends Component {
     return (
       <div className="App">
         <div className="container">
+        {
+          this.state.notification && 
+          <div className="alert mt-3 alert-success">
+            <p className="text-center">{this.state.notification}</p>
+          </div>
+        }
+          
           <input type="text" name="todo" className="my-4 form-control" placeholder="Add a new todo" onChange={this.handleChange} value={this.state.newTodo} />
           <button onClick={this.state.editing ? this.updateTodo : this.addTodo} className="btn-info mb-3 form control">
             {this.state.editing ? 'Update todo' : 'Add todo'}
