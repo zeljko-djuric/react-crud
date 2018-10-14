@@ -29,7 +29,6 @@ class App extends Component {
 
   async componentDidMount(){
     const response = await axios.get(`${this.apiUrl}/todos`);
-    console.log(response);
     this.setState({
       todos: response.data,
       loading: false
@@ -61,12 +60,10 @@ class App extends Component {
     })
   }
 
- async addTodo(){
-  const response = await  axios.post(`${this.apiUrl}/todos`,{
+  async addTodo(){
+    const response = await  axios.post(`${this.apiUrl}/todos`,{
     name: this.state.newTodo
-  });
-  console.log(response);
-    
+    });    
     const todos = this.state.todos;
     todos.push(response.data);
 
@@ -74,7 +71,6 @@ class App extends Component {
       todos: todos,
       newTodo: ''
     })
-
     this.alert('Todo added successfully.');
   }
 
@@ -83,11 +79,10 @@ class App extends Component {
     if(lastTodo){
       return lastTodo.id +1;
     }
-
     return 1;
   }
 
- async deleteTodo(index){
+  async deleteTodo(index){
     const todos = this.state.todos;
     const todo = todos[index];
     await axios.delete(`${this.apiUrl}/todos/${todo.id}`);
@@ -109,18 +104,13 @@ class App extends Component {
 
   async updateTodo(){
    const todo = this.state.todos[this.state.editingIndex];
-
    const response = await axios.put(`${this.apiUrl}/todos/${todo.id}`,{
      name: this.state.newTodo
    })
-
-
    const todos = this.state.todos;
    todos[this.state.editingIndex] = response.data;
    this.setState({todos, editing: false, editingIndex: null});
-
    this.alert('Todo updated successfully.');
-
   }
 
   render() {
