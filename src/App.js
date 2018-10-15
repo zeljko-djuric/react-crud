@@ -1,3 +1,6 @@
+// TODO:
+// Transition from bootstrap to ant
+
 import React, { Component } from 'react';
 import './App.css';
 import ListItem from './ListItem';
