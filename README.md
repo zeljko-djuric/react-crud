@@ -1,2 +1,2 @@
 # react-crud
-## Application is deployed on netlify [a link](https://todo-lista.netlify.com/)
+## You can check [here](https://todo-lista.netlify.com/) current version of app
